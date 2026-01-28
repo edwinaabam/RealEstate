@@ -1,0 +1,17 @@
+pandas
+numpy
+scikit-learn
+statsmodels
+matplotlib
+seaborn
+mlflow
+fastapi
+uvicorn
+pydantic
+requests
+huggingface-hub
+ipykernel
+streamlit
+plotly
+python-dotenv
+pmdarima
