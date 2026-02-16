@@ -1,11 +1,35 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import streamlit as st
 import pandas as pd
 from PIL import Image
 import json
 import os
 import pickle
-import numpy as np
-from statsmodels.tsa.statespace.sarimax import SARIMAX
+from statsmodels.tsa.statespace.sarimax import SARIMAXResults
 
 st.set_page_config(page_title="AlloyTower RealEstate", layout="wide")
 
@@ -32,27 +56,9 @@ xgb_multi = pickle.load(open(
 xgb_fallback = pickle.load(open(
     os.path.join(PROJECT_ROOT, "model", "xgb_pkl", "xgb_fallback.pkl"), "rb"))
 
-# ==========================================
-# SAFE SARIMAX LOAD (FROM JSON SCHEMA)
-# ==========================================
-
-#with open(os.path.join(PROJECT_ROOT, "model", "sarimax_schema.json")) as f:
-#    sarimax_params = json.load(f)
-
-from statsmodels.tsa.statespace.sarimax import SARIMAXResults
-sarimax_params = SARIMAXResults.load(
-    os.path.join(PROJECT_ROOT, "model", "sarimax_model.json")
+sarimax_model = SARIMAXResults.load(
+    os.path.join(PROJECT_ROOT, "model", "sarimax_model_compact.pkl")
 )
-
-dummy_series = np.zeros(50)
-
-sarimax_temp_model = SARIMAX(
-    dummy_series,
-    order=(2,1,3),              # <-- PUT YOUR REAL ORDER HERE
-    seasonal_order=(1,1,1,12)   # <-- PUT YOUR REAL SEASONAL ORDER HERE
-)
-
-sarimax_model = sarimax_temp_model.filter(sarimax_params)
 
 # ==========================================
 # Sidebar Logo
@@ -163,6 +169,8 @@ with tab2:
 
     df_zip = df_county[df_county["ZIP_CODE"] == zipcode]
 
+    # PROPERTY TYPE
+
     st.markdown("### Property Type")
 
     property_type = st.selectbox(
@@ -171,6 +179,8 @@ with tab2:
     )
 
     df_type = df_zip[df_zip["PROPERTY_TYPE"] == property_type]
+
+    # PROPERTY FEATURES
 
     st.markdown("### Property Features")
 
@@ -304,7 +314,13 @@ with tab3:
 
         steps = forecast_horizon
 
-        forecast = sarimax_model.forecast(steps=steps)
+        last_exog = sarimax_model.model.exog[-1:]
+        future_exog = last_exog.repeat(steps, axis=0)
+
+        forecast = sarimax_model.forecast(
+            steps=steps,
+            exog=future_exog
+        )
 
         forecast_values = forecast.tolist()
 
@@ -354,4 +370,3 @@ with tab3:
             {trend_message}
             """
         )
-
