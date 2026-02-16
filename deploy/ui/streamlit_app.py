@@ -5,6 +5,9 @@ from PIL import Image
 import json
 import os
 
+
+
+
 st.set_page_config(page_title="AlloyTower RealEstate", layout="wide")
 
 
@@ -75,6 +78,10 @@ with tab1:
 # 2️⃣ PROPERTY VALUATION PAGE
 # ==================================================
 
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(BASE_DIR))
+
 with tab2:
 
     st.subheader("Property Valuation Engine")
@@ -84,8 +91,8 @@ with tab2:
     # --------------------------------------------------
 
     x_tree = pd.read_csv(
-        r"C:\Users\Edwina\Documents\Amdari_files\ds_projects\CentralizedDataPlatform\model\x_tree.csv"
-    )
+    os.path.join(PROJECT_ROOT, "model", "x_tree.csv")
+        )
 
     x_tree["PROPERTY_ID"] = x_tree["PROPERTY_ID"].astype(str)
 
@@ -93,9 +100,13 @@ with tab2:
     # Load Location Data
     # --------------------------------------------------
 
+    #df_location = pd.read_csv(
+     #   r"C:\Users\Edwina\Documents\Amdari_files\ds_projects\CentralizedDataPlatform\database\raw_data\DIM_PROPERTY_LOCATION.csv"
+    #)
+
     df_location = pd.read_csv(
-        r"C:\Users\Edwina\Documents\Amdari_files\ds_projects\CentralizedDataPlatform\database\raw_data\DIM_PROPERTY_LOCATION.csv"
-    )
+    os.path.join(PROJECT_ROOT, "database", "raw_data", "DIM_PROPERTY_LOCATION.csv")
+        )
 
     df_location.columns = df_location.columns.str.strip().str.upper()
     df_location["PROPERTY_ID"] = df_location["PROPERTY_ID"].astype(str)
@@ -104,8 +115,13 @@ with tab2:
     df = x_tree.merge(df_location, on="PROPERTY_ID", how="left")
 
     # Load feature schema
+    #with open(
+    #    r"C:\Users\Edwina\Documents\Amdari_files\ds_projects\CentralizedDataPlatform\model\feature_schema.json"
+    #) as f:
+     #   feature_columns = json.load(f)
+
     with open(
-        r"C:\Users\Edwina\Documents\Amdari_files\ds_projects\CentralizedDataPlatform\model\feature_schema.json"
+    os.path.join(PROJECT_ROOT, "model", "feature_schema.json")
     ) as f:
         feature_columns = json.load(f)
 
