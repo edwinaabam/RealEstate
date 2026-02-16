@@ -36,3 +36,7 @@ pillow
 requests
 altair==4.2.2
 python_version == 3.11
+
+
+
+
