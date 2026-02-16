@@ -19,6 +19,8 @@ database/*
 #model/x_tree.csv
 model/*.ipynb
 
+!model/sarimax_model_compact.pkl
+
 # Ignore local cache
 __pycache__/
 *.pyc

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, create_model
 from typing import Type
+from statsmodels.tsa.statespace.sarimax import SARIMAXResults
 import numpy as np
 import pickle
 import json
@@ -31,7 +32,13 @@ xgb_condo = pickle.load(open(os.path.join(XGB_DIR, "xgb_Condo.pkl"), "rb"))
 xgb_multi = pickle.load(open(os.path.join(XGB_DIR, "xgb_Multi-Family.pkl"), "rb"))
 xgb_fallback = pickle.load(open(os.path.join(XGB_DIR, "xgb_fallback.pkl"), "rb"))
 
-sarimax_model = pickle.load(open(os.path.join(MODEL_DIR, "sarimax_model.pkl"), "rb"))
+#sarimax_model = pickle.load(open(os.path.join(MODEL_DIR, "sarimax_model.pkl"), "rb"))
+
+
+# Load compact SARIMAX model
+sarimax_model = SARIMAXResults.load(
+    os.path.join(MODEL_DIR, "sarimax_model_compact.pkl")
+)
 
 # =========================
 # Load Feature Schema
