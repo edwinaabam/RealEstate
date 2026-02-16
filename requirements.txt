@@ -20,13 +20,19 @@
 #nbformat
 #altair==4.2.2
 
-python_version == "3.11"
-streamlit==1.32.2
-pandas
-numpy
-scikit-learn
-xgboost
-statsmodels
-pillow
-altair==4.2.2
+
+
+
+
+
 requests
+streamlit==1.29.0
+numpy==1.26.4
+pandas==2.2.2
+statsmodels==0.14.2
+scikit-learn==1.4.2
+xgboost==2.0.3
+pillow
+requests
+altair==4.2.2
+python_version == 3.11
