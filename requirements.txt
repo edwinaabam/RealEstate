@@ -35,7 +35,7 @@ xgboost==2.0.3
 pillow
 requests
 altair==4.2.2
-python_version == 3.11
+
 
 
 
