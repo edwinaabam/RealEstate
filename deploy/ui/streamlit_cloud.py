@@ -34,7 +34,7 @@ xgb_fallback = pickle.load(open(
 # Sidebar Logo
 # ==========================================
 logo = Image.open(os.path.join(PROJECT_ROOT, "deploy", "ui", "logo.png"))
-st.sidebar.image(logo, width=200)
+st.sidebar.image(logo, use_container_width=True)
 st.sidebar.markdown("## AlloyTower Real Estate")
 
 # ==========================================
