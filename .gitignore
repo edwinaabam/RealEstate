@@ -14,7 +14,12 @@ data_cleaning/
 database/old_data/
 database/property_display_data.csv
 database/property_price_dataset.csv
-database/raw_data/
+
+# Ignore everything inside raw_data
+database/raw_data/*
+
+# But allow this specific file
+!database/raw_data/DIM_PROPERTY_LOCATION.csv
 
 # Snowflake connection script
 database/snowflakconn.py
