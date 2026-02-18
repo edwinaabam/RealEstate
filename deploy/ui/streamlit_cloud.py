@@ -32,27 +32,12 @@ xgb_fallback = pickle.load(open(
 
 
 # ==========================================
-# Sidebar Logo (Fail-Proof Version)
+# Sidebar Logo (Cloud Compatible)
 # ==========================================
-import os
-from PIL import Image
-import streamlit as st
-
 logo_path = os.path.join(BASE_DIR, "logo.png")
 
-try:
-    st.write("Checking logo path:", logo_path)
-    st.write("File exists:", os.path.exists(logo_path))
-
-    if os.path.exists(logo_path):
-        st.sidebar.image(logo_path, use_container_width=True)
-    else:
-        st.sidebar.write("Logo not found")
-
-except Exception as e:
-    st.sidebar.write("Logo failed to load")
-    st.sidebar.write(str(e))
-
+if os.path.exists(logo_path):
+    st.sidebar.image(logo_path, width=250)
 
 st.sidebar.markdown("## AlloyTower Real Estate")
 

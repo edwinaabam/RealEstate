@@ -26,7 +26,7 @@
 
 
 requests
-streamlit==1.29.0
+#streamlit==1.29.0
 numpy==1.26.4
 pandas==2.2.2
 statsmodels==0.14.2
@@ -35,8 +35,7 @@ xgboost==2.0.3
 pillow
 requests
 altair==4.2.2
-
-
+streamlit>=1.30.0
 
 
 
