@@ -47,7 +47,7 @@ st.sidebar.markdown("## AlloyTower Real Estate")
 # ==========================================
 st.markdown("""
     <div style="
-        background-color:#62c3b3;
+        background-color:#5ec2b7;
         padding:12px 20px;
         border-radius:10px;
         text-align:center;
@@ -67,7 +67,7 @@ st.markdown("""
         <p style="
             color:white;
             margin:4px 0 0 0;
-            font-size:16px;
+            font-size:20px;
         ">
             Intelligent Property Valuation & Price Forecasting Platform
         </p>
