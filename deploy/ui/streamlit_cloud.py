@@ -48,14 +48,14 @@ st.sidebar.markdown("## AlloyTower Real Estate")
 st.markdown("""
     <div style="
         background-color:#1e7f4f;
-        padding:25px;
+        padding:12px 20px;   /* reduced from 25px */
         border-radius:10px;
         text-align:center;
     ">
-        <h1 style="color:white; margin-bottom:5px;">
+        <h1 style="color:white; margin:0;">
             AlloyTower Real Estate
         </h1>
-        <p style="color:white; margin-top:5px; font-size:18px;">
+        <p style="color:white; margin:5px 0 0 0; font-size:16px;">
             Intelligent Property Valuation & Price Forecasting Platform
         </p>
     </div>
